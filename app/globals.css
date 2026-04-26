@@ -689,6 +689,15 @@ body.cursor-hover .cursor-ring {
   body { cursor: auto; }
   .cursor-dot, .cursor-ring { display: none; }
 
+  /* Hero: use svh so content isn't hidden behind browser chrome (address bar / gesture bar).
+     Also shift content above center with flex-start + top padding. */
+  #home {
+    min-height: 100svh !important;
+    justify-content: flex-start !important;
+    padding-top: max(4.5rem, 20vh) !important;
+    padding-bottom: 4rem !important;
+  }
+
   /* About: stack avatar above bio */
   .about-grid {
     grid-template-columns: 1fr !important;

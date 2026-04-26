@@ -151,6 +151,28 @@ export default function About() {
                 </div>
               ))}
             </div>
+
+            {/* Resume buttons */}
+            <div style={{ display: "flex", gap: "0.75rem", marginTop: "2rem", flexWrap: "wrap" }}>
+              <a
+                href="https://drive.google.com/file/d/1mJBoeJr58IivfZIL9kISQ8wusqzZ6uuJ/view?usp=drive_link"
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-white"
+                style={{ fontSize: "0.82rem", padding: "0.65rem 1.5rem" }}
+              >
+                View Resume ↗
+              </a>
+              <a
+                href="https://drive.google.com/uc?export=download&id=1mJBoeJr58IivfZIL9kISQ8wusqzZ6uuJ"
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-ghost"
+                style={{ fontSize: "0.82rem", padding: "0.65rem 1.5rem" }}
+              >
+                Download Resume ↓
+              </a>
+            </div>
           </div>
         </motion.div>
       </div>

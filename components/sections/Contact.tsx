@@ -97,9 +97,9 @@ export default function Contact() {
   ];
 
   const socials = [
-    { label: "GitHub",           href: "https://github.com/SatyamChaturvedi39" },
-    { label: "LinkedIn",         href: "https://www.linkedin.com/in/satyamchaturvediii" },
-    { label: "Letter of Rec ↗", href: "https://drive.google.com/file/d/1UYnBKECjy6X_kPUxAVcfSjiQhlnCvfni/view?usp=sharing" },
+    { label: "GitHub",      href: "https://github.com/SatyamChaturvedi39" },
+    { label: "LinkedIn",    href: "https://www.linkedin.com/in/satyamchaturvediii/" },
+    { label: "Resume ↗",   href: "https://drive.google.com/file/d/1mJBoeJr58IivfZIL9kISQ8wusqzZ6uuJ/view?usp=drive_link" },
   ];
 
   return (

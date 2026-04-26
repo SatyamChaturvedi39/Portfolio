@@ -4,22 +4,22 @@ import { gsap } from "gsap";
 import MagneticButton from "@/components/ui/MagneticButton";
 
 const ROLES = [
-  "Machine Learning Engineer",
+  "Aspiring AI/ML Engineer",
   "Full-Stack Developer",
-  "Python & AI Developer",
-  "React & FastAPI Builder",
+  "Python Developer",
+  "Data Analyst",
   "Problem Solver",
 ];
 
 const BADGES = [
-  { label: "Python",     icon: "🐍", x: "3%",  y: "12%" },
-  { label: "React",      icon: "⚛️", x: "82%", y: "8%"  },
-  { label: "FastAPI",    icon: "⚡", x: "2%",  y: "50%" },
-  { label: "PyTorch",    icon: "🔥", x: "85%", y: "44%" },
-  { label: "XGBoost",    icon: "📊", x: "1%",  y: "80%" },
-  { label: "LLM / RAG",  icon: "🧠", x: "81%", y: "77%" },
-  { label: "TypeScript", icon: "🟦", x: "23%", y: "91%" },
-  { label: "Docker",     icon: "🐳", x: "64%", y: "90%" },
+  { label: "Python", icon: "🐍", x: "3%", y: "12%" },
+  { label: "React", icon: "⚛️", x: "82%", y: "8%" },
+  { label: "FastAPI", icon: "⚡", x: "2%", y: "50%" },
+  { label: "TypeScript", icon: "🔥", x: "85%", y: "40%" },
+  { label: "ML / DL", icon: "📊", x: "1%", y: "80%" },
+  { label: "LLM / RAG", icon: "🧠", x: "81%", y: "77%" },
+  { label: "Android Studio", icon: "🟦", x: "23%", y: "91%" },
+  { label: "Next.js", icon: "🐳", x: "64%", y: "90%" },
 ];
 
 const BADGE_STYLE: React.CSSProperties = {
@@ -112,9 +112,9 @@ function TypedRole() {
 }
 
 export default function Hero() {
-  const pillRef   = useRef<HTMLDivElement>(null);
-  const subRef    = useRef<HTMLParagraphElement>(null);
-  const btnsRef   = useRef<HTMLDivElement>(null);
+  const pillRef = useRef<HTMLDivElement>(null);
+  const subRef = useRef<HTMLParagraphElement>(null);
+  const btnsRef = useRef<HTMLDivElement>(null);
   const socialRef = useRef<HTMLDivElement>(null);
   const badgeRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [ready, setReady] = useState(false);
@@ -129,10 +129,10 @@ export default function Hero() {
   useEffect(() => {
     if (!ready) return;
     const tl = gsap.timeline({ delay: 0.1 });
-    tl.fromTo(pillRef.current,   { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" })
-      .fromTo(subRef.current,    { opacity: 0, y: 14 },  { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "+=0.2")
-      .fromTo(btnsRef.current,   { opacity: 0, y: 14 },  { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.35")
-      .fromTo(socialRef.current, { opacity: 0, y: 14 },  { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, "-=0.25");
+    tl.fromTo(pillRef.current, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" })
+      .fromTo(subRef.current, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "+=0.2")
+      .fromTo(btnsRef.current, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.35")
+      .fromTo(socialRef.current, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, "-=0.25");
 
     badgeRefs.current.forEach((el, i) => {
       if (!el) return;
@@ -243,18 +243,8 @@ export default function Hero() {
         </a>
       </div>
 
-      {/* Scroll hint */}
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        style={{ zIndex: 3 }}
-      >
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.52rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(255,255,255,0.18)" }}>scroll</span>
-        <div style={{ width: "1px", height: "36px", background: "linear-gradient(to bottom, rgba(255,255,255,0.45), transparent)" }} className="animate-scroll-hint" />
-      </div>
       <style>{`
         @keyframes badge-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-        @keyframes scroll-pulse { 0%,100%{opacity:0.3;transform:scaleY(0.5);transform-origin:top} 50%{opacity:1;transform:scaleY(1);transform-origin:top} }
-        .animate-scroll-hint { animation: scroll-pulse 2s ease-in-out infinite; }
       `}</style>
     </section>
   );

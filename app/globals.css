@@ -18,7 +18,10 @@
 
 /* ── Base reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: auto; }
+html {
+  scroll-behavior: auto;
+  overflow-x: hidden; /* must be on html, not just body, for mobile browsers */
+}
 
 body {
   background: #000000;
@@ -27,6 +30,8 @@ body {
   font-weight: 400;
   line-height: 1.7;
   overflow-x: hidden;
+  max-width: 100%;
+  touch-action: pan-y; /* prevent horizontal swipe-scroll on mobile */
   cursor: none;
   -webkit-font-smoothing: antialiased;
 }
@@ -689,13 +694,13 @@ body.cursor-hover .cursor-ring {
   body { cursor: auto; }
   .cursor-dot, .cursor-ring { display: none; }
 
-  /* Hero: use svh so content isn't hidden behind browser chrome (address bar / gesture bar).
-     Also shift content above center with flex-start + top padding. */
+  /* Hero: use svh so browser chrome (address bar / gesture bar) doesn't eat into the section.
+     Extra bottom padding nudges the flex-centered content above the visual midpoint. */
   #home {
     min-height: 100svh !important;
-    justify-content: flex-start !important;
-    padding-top: max(4.5rem, 20vh) !important;
-    padding-bottom: 4rem !important;
+    justify-content: center !important;
+    padding-top: 5rem !important;
+    padding-bottom: 18vh !important;
   }
 
   /* About: stack avatar above bio */

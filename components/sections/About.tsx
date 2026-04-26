@@ -30,6 +30,7 @@ export default function About() {
       </motion.div>
 
       <div
+        className="about-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "clamp(180px, 25vw, 280px) 1fr",

@@ -668,16 +668,58 @@ body.cursor-hover .cursor-ring {
 ───────────────────────────── */
 @media (max-width: 900px) {
   .hero-name { font-size: clamp(2.5rem, 11vw, 16rem); }
+
+  /* Contact: stack info + form */
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+
+  /* Certs: 2-col instead of 3 */
+  .certs-grid { grid-template-columns: 1fr 1fr !important; }
 }
 
 /* ─────────────────────────────
-   RESPONSIVE — show hamburger ≤ 768px
+   RESPONSIVE — hamburger + major layout ≤ 768px
 ───────────────────────────── */
 @media (max-width: 768px) {
+  /* Nav */
   .nav-glass-group { display: none !important; }
   .nav-hamburger   { display: flex; }
   body { cursor: auto; }
   .cursor-dot, .cursor-ring { display: none; }
+
+  /* About: stack avatar above bio */
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .about-avatar-wrap {
+    max-width: 200px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Education: single column */
+  .education-grid { grid-template-columns: 1fr !important; }
+
+  /* Projects: single column */
+  .projects-grid { grid-template-columns: 1fr !important; }
+
+  /* Experience: shift timeline to left edge */
+  .tl-bg-line {
+    left: 20px !important;
+    transform: none !important;
+  }
+  .tl-line-glow { left: 20px !important; }
+  .tl-icon-node { left: 20px !important; transform: none !important; }
+  .tl-row {
+    justify-content: flex-start !important;
+    padding: 0 0 0 60px !important;
+  }
+  .tl-card {
+    width: 100% !important;
+    text-align: left !important;
+  }
 }
 
 /* ─────────────────────────────
@@ -689,7 +731,7 @@ body.cursor-hover .cursor-ring {
   .hero-badges { display: none !important; }
   .role-pill { font-size: 0.58rem; padding: 0.35rem 0.9rem; letter-spacing: 0.1em; }
 
-  /* Sections padding */
+  /* Section padding */
   #about, #education, #skills, #experience,
   #projects, #certifications, #contact {
     padding-left: 4% !important;
@@ -708,39 +750,11 @@ body.cursor-hover .cursor-ring {
     margin-bottom: 2rem !important;
   }
 
-  /* About — stack avatar on top, centered */
-  #about > div:last-child {
-    grid-template-columns: 1fr !important;
-  }
-  #about .about-avatar-wrap {
-    max-width: 200px !important;
-    margin: 0 auto !important;
-  }
+  /* Certs: single column */
+  .certs-grid { grid-template-columns: 1fr !important; }
 
-  /* Projects */
-  #projects > div { grid-template-columns: 1fr !important; }
-
-  /* Education */
-  #education > div:last-child { grid-template-columns: 1fr !important; }
-
-  /* Experience */
-  .tl-line-glow, #experience [class*="tl-line"] { left: 20px !important; }
-  .tl-icon-node { left: 20px !important; transform: none !important; }
-  #experience [style*="flex"] {
-    justify-content: flex-start !important;
-    padding: 0 0 0 60px !important;
-  }
-  #experience .tl-card {
-    width: 100% !important;
-    text-align: left !important;
-  }
-
-  /* Certifications */
-  #certifications > div:last-child { grid-template-columns: 1fr !important; }
-
-  /* Contact */
-  #contact > div:last-child { grid-template-columns: 1fr !important; gap: 2rem !important; }
-  #contact [style*="1fr 1fr"] { grid-template-columns: 1fr !important; }
+  /* Contact name/email: stack */
+  .contact-name-email { grid-template-columns: 1fr !important; }
 }
 
 /* ─────────────────────────────

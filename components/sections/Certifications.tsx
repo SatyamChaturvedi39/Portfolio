@@ -93,7 +93,7 @@ export default function Certifications() {
         <div className="glass-heading">Certifications</div>
       </motion.div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
+      <div className="certs-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
         {certs.map(({ icon, issuer, name, desc, link, accentColor, isFolder }, i) => (
           <motion.div
             key={name}

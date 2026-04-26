@@ -31,7 +31,7 @@ export default function Education() {
         <div className="glass-heading">Education</div>
       </motion.div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+      <div className="education-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
         {degrees.map((d, i) => (
           <motion.div
             key={d.degree}

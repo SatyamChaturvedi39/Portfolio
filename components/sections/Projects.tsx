@@ -270,6 +270,7 @@ export default function Projects() {
       </motion.div>
 
       <motion.div
+        className="projects-grid"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-10%" }}

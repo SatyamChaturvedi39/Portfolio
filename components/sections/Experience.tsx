@@ -51,6 +51,7 @@ function TimelineCard({ entry }: { entry: Entry }) {
 
   return (
     <div
+      className="tl-row"
       style={{
         display: "flex",
         justifyContent: isLeft ? "flex-end" : "flex-start",
@@ -159,6 +160,7 @@ export default function Experience() {
       >
         {/* Animated glowing centre line */}
         <div
+          className="tl-bg-line"
           style={{
             position: "absolute",
             top: 0, bottom: 0,

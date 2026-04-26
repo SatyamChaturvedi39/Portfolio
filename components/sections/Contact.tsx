@@ -124,7 +124,7 @@ export default function Contact() {
         </div>
       </motion.div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1.45fr", gap: "4rem", alignItems: "start" }}>
+      <div className="contact-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.45fr", gap: "4rem", alignItems: "start" }}>
         {/* Left info */}
         <motion.div variants={fadeSlideLeft} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10%" }}>
           <h3
@@ -222,7 +222,7 @@ export default function Contact() {
         {/* Right form */}
         <motion.div variants={fadeSlideRight} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10%" }}>
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+            <div className="contact-name-email" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
               <FloatField label="Name" name="name" placeholder="Your name" required value={fields.name} onChange={set("name")} />
               <FloatField label="Email" name="email" type="email" placeholder="your@email.com" required value={fields.email} onChange={set("email")} />
             </div>

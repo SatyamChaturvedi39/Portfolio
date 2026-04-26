@@ -155,7 +155,7 @@ export default function Hero() {
       <div className="hero-vignette" />
 
       {/* Floating badges */}
-      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 2 }}>
+      <div className="hero-badges" style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 2 }}>
         {BADGES.map((b, i) => (
           <div
             key={b.label}

@@ -20,7 +20,8 @@ export default function Navbar() {
   const bubbleRef   = useRef<HTMLDivElement>(null);
   const linkRefs    = useRef<(HTMLAnchorElement | null)[]>([]);
   const initialized = useRef(false);
-  const [active, setActive] = useState("home");
+  const [active, setActive]     = useState("home");
+  const [menuOpen, setMenuOpen] = useState(false);
   const lenis = useLenis();
 
   // Entrance animation
@@ -32,13 +33,11 @@ export default function Navbar() {
     );
   }, []);
 
-  // Active-link tracking via IntersectionObserver
+  // Active-link tracking
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(e.target.id);
-        });
+        entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); });
       },
       { threshold: 0.35 }
     );
@@ -46,12 +45,12 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  // Animate bubble to follow active link
+  // Bubble follows active link
   useEffect(() => {
     const idx = links.findIndex((l) => l.href.replace("#", "") === active);
     if (idx < 0) return;
-    const link  = linkRefs.current[idx];
-    const inner = innerRef.current;
+    const link   = linkRefs.current[idx];
+    const inner  = innerRef.current;
     const bubble = bubbleRef.current;
     if (!link || !inner || !bubble) return;
 
@@ -69,8 +68,13 @@ export default function Navbar() {
     }
   }, [active]);
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
+  const scrollTo = (href: string) => {
     if (lenis) {
       lenis.scrollTo(href, { duration: 1.4, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
     } else {
@@ -78,42 +82,78 @@ export default function Navbar() {
     }
   };
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    scrollTo(href);
+  };
+
+  const handleMobileClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    setTimeout(() => scrollTo(href), 50);
+  };
+
   return (
-    <nav
-      ref={navRef}
-      className="nav-glass-group fixed top-6 left-1/2 -translate-x-1/2 z-50 rounded-full px-3 py-1.5 overflow-hidden"
-      style={{ opacity: 0, width: "fit-content" }}
-    >
-      {/* Gradient border lines — top & bottom */}
-      <div className="nav-grad-border-top" />
-      <div className="nav-grad-border-bottom" />
+    <>
+      {/* Desktop pill nav */}
+      <nav
+        ref={navRef}
+        className="nav-glass-group fixed top-6 left-1/2 -translate-x-1/2 z-50 rounded-full px-3 py-1.5 overflow-hidden"
+        style={{ opacity: 0, width: "fit-content" }}
+      >
+        <div className="nav-grad-border-top" />
+        <div className="nav-grad-border-bottom" />
+        <div style={{
+          position: "absolute", inset: 0, borderRadius: "999px",
+          background: "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 60%)",
+          pointerEvents: "none",
+        }} />
+        <div ref={innerRef} style={{ position: "relative", display: "flex", alignItems: "center", padding: "0.25rem" }}>
+          <div ref={bubbleRef} className="nav-bubble" style={{ position: "absolute", top: 0 }} />
+          {links.map(({ label, href }, i) => {
+            const id = href.replace("#", "");
+            return (
+              <a
+                key={id}
+                ref={(el) => { linkRefs.current[i] = el; }}
+                href={href}
+                onClick={(e) => handleClick(e, href)}
+                className={`nav-link ${active === id ? "active" : ""}`}
+              >
+                {label}
+              </a>
+            );
+          })}
+        </div>
+      </nav>
 
-      {/* Glass overlay shimmer */}
-      <div style={{
-        position: "absolute", inset: 0, borderRadius: "999px",
-        background: "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 60%)",
-        pointerEvents: "none",
-      }} />
+      {/* Mobile hamburger button */}
+      <button
+        className="nav-hamburger"
+        onClick={() => setMenuOpen((o) => !o)}
+        aria-label="Toggle menu"
+      >
+        {menuOpen ? "✕" : "☰"}
+      </button>
 
-      <div ref={innerRef} style={{ position: "relative", display: "flex", alignItems: "center", padding: "0.25rem" }}>
-        {/* 3D glass bubble */}
-        <div ref={bubbleRef} className="nav-bubble" style={{ position: "absolute", top: 0 }} />
-
-        {links.map(({ label, href }, i) => {
-          const id = href.replace("#", "");
-          return (
-            <a
-              key={id}
-              ref={(el) => { linkRefs.current[i] = el; }}
-              href={href}
-              onClick={(e) => handleClick(e, href)}
-              className={`nav-link ${active === id ? "active" : ""}`}
-            >
-              {label}
-            </a>
-          );
-        })}
-      </div>
-    </nav>
+      {/* Mobile full-screen overlay menu */}
+      {menuOpen && (
+        <div className="nav-mobile-overlay">
+          {links.map(({ label, href }) => {
+            const id = href.replace("#", "");
+            return (
+              <a
+                key={id}
+                href={href}
+                onClick={(e) => handleMobileClick(e, href)}
+                className={`nav-mobile-link ${active === id ? "active" : ""}`}
+              >
+                {label}
+              </a>
+            );
+          })}
+        </div>
+      )}
+    </>
   );
 }

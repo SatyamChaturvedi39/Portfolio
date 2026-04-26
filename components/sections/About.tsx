@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -47,7 +47,7 @@ export default function About() {
           viewport={{ once: true, margin: "-10%" }}
           style={{ display: "flex", justifyContent: "center" }}
         >
-          <div style={{ position: "relative", width: "100%", maxWidth: 280 }}>
+          <div className="about-avatar-wrap" style={{ position: "relative", width: "100%", maxWidth: 280 }}>
             {/* Spinning ring */}
             <div style={{
               position: "absolute", inset: "-10%",

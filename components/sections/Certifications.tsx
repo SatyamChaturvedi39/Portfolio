@@ -8,7 +8,7 @@ const certs = [
     issuer: "NVIDIA",
     name: "Getting Started with Deep Learning",
     desc: "Hands-on introduction to neural networks, image classification with CNNs, and deep learning best practices using NVIDIA's DLI platform.",
-    link: "#",
+    link: "https://drive.google.com/file/d/1NMQEPw-gyqK4ceg_1EfhYhZ6EvFNI4AT/view?usp=drive_link",
     accentColor: "rgba(255,255,255,0.8)",
     isFolder: false,
   },
